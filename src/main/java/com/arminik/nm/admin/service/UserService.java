@@ -4,9 +4,9 @@ import com.arminik.nm.admin.models.ResponseUser;
 import com.arminik.nm.admin.models.User;
 import com.arminik.nm.admin.repo.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -27,6 +27,19 @@ public class UserService {
                 .id(user.getId())
                 .userName(user.getLastname() + " " + user.getFirstname())
                 .build();
+    }
+
+    public User findUserByNickname(String nickName) {
+        log.info("start finding {}", nickName);
+       return  userRepository.findByNickName(nickName);
+    }
+
+    public ResponseUser deleteUserByLogin(String login) {
+        log.info("delete user by login: {}", login);
+        userRepository.delete(login);
+        return ResponseUser.builder().
+                userName(login).
+                build();
     }
 
 }

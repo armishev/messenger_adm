@@ -1,5 +1,5 @@
 server.port: 8080
-
+scriptPath: "/home/vsevolod/deploy/test.sh"
 spring:
   datasource:
     host: 91.186.197.234
